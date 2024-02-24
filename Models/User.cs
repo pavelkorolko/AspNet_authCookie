@@ -1,12 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Classwork_16._02._24_auth_authorization__2.Models
 {
     public class User
     {
+        private static int id = 1;
+
         [Key]
-        private static int id;
-        public  int Id { get; }
+        public int Id { get; private set; }
+
+        [ValidateNever]
+        public string Name { get; set; }
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
@@ -17,7 +24,7 @@ namespace Classwork_16._02._24_auth_authorization__2.Models
 
         public User()
         {
-            Interlocked.Increment(ref id);
+            Id = id++;
         }
     }
 }

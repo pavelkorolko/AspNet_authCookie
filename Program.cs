@@ -12,6 +12,7 @@ namespace Classwork_16._02._24_auth_authorization__2
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<UserRepository>();
+            builder.Services.AddSingleton<ArticleRepository>();
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options => options.LoginPath = "/home/login");
@@ -31,7 +32,7 @@ namespace Classwork_16._02._24_auth_authorization__2
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

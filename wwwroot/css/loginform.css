@@ -1,0 +1,17 @@
+﻿.button-container {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: 1px solid #2980b9;
+    border-radius: 5px;
+    display: inline-block;
+}
+

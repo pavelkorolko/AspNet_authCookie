@@ -1,0 +1,52 @@
+﻿
+@model User
+
+<div class="container-fluid">
+    <div class="row justify-content-center align-items-center" style="height: 80vh;">
+        <div class="col-md-6 border rounded p-3">
+            <form asp-controller="Home" asp-action="Data" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger alert alert-danger"></div>
+                <input type="hidden" name="id" value="@Model.Id"/>
+                <div class="form-group">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control form-control-custom" value="@Model.Name" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control form-control-custom" value="@Model.Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control form-control-custom" value="@Model.Password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3 d-flex justify-content-between align-items-center">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-primary">Change</button>
+                    <a class="btn btn-primary" href="/home/admin" role="button">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (TempData["UserChanged"] != null)
+{
+    @section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.5/sweetalert2.css" asp-append-version="true" />
+    }
+
+    @section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.5/sweetalert2.min.js" asp-append-version="true"></script>
+    <script>
+        Swal.fire({
+            title: "<h5 style='color:black'>" + "Your credentials had been changed！" + "</h5>",
+            confirmButtonColor: '#3498db',
+        }).then(function () {
+            window.location = "/home/admin";
+        });
+    </script>
+    }
+}
+

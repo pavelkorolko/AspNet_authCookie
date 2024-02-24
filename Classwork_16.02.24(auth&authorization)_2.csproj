@@ -7,4 +7,8 @@
     <RootNamespace>Classwork_16._02._24_auth_authorization__2</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
 </Project>

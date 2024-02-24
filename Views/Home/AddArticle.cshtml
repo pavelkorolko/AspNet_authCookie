@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@model Article;
+
+<div class="container-fluid mt-2">
+    <div class="row justify-content-center align-items-center" style="height: 66vh;">
+        <div class="col-md-6 border rounded p-3">
+            <form asp-controller="Home" asp-action="addarticle" method="post" onsubmit="return validateForm()">
+                <input type="hidden" name="userid" value="@Model.UserId"/>
+                <input type="hidden" name="id" value="@Model.Id"/>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label>
+                    <input type="text" class="form-control" id="title" name="Title">
+                </div>
+
+                <div class="mb-3">
+                    <label for="content" class="form-label">Content:</label>
+                    <textarea class="form-control w-100" id="content" name="Content" style="width: 400px; height: 200px;"></textarea>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary" id="saveButton">Save</button>
+                    <a class="btn btn-primary" href="/home/admin" role="button">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function validateForm() {
+        var title = document.getElementById("title").value;
+        var content = document.getElementById("content").value;
+
+        if (title === "" || content === "") {
+            alert("Title and Content must be filled out!");
+            return false;
+        }
+        return true;
+    }
+</script>

@@ -1,24 +1,42 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
+@model User;
 
-<ul class="navbar-nav flex-grow-1">
-    @if (User.Identity.IsAuthenticated)
-    {
-        <li class="nav-item">
-            <span>@User.Identity.Name</span>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">LogOut</a>
-        </li>
+<div class="mt-3">
+    <p>Hello, @Model.Name!</p>
+</div>
+<div class="button-container">
+    <div class="btn-container">
+        <a class="btn btn-primary" href="/home/data/@Model.Id" role="button">Change data</a>
+    </div>
+    <div class="btn-container">
+        <a class="btn btn-primary" href="/home/articles" role="button">Browse my articles</a>
+    </div>
+    <div class="btn-container">
+        <a class="btn btn-primary" href="/home/addarticle" role="button">Add article</a>
+    </div>
+    <div class="btn-container">
+        <a class="btn btn-primary" href="/home/main" role="button">Main</a>
+    </div>
+    <div class="btn-container">
+        <a class="btn btn-primary" href="/home/logout" role="button">Log out</a>
+    </div>
+</div>
+
+<div class="mt-3">
+    <p><b>Joke of the day:</b></></p>
+    @{
+        var joke = await API.Generate();
+
+        if (joke != null)
+        {
+            <p><i>@joke<i/></p>
+        }
     }
-    else
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
-        </li>
-    }
-</ul>
+</div>
+
+
 

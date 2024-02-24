@@ -7,5 +7,16 @@
         public string Content { get; set; }
 
         public int UserId { get; set; }
+
+        public string GetHeading()
+        {
+            string[] words = Content.Split(" ");
+
+            string heading = string.Join(" ", words.Take(3));
+
+            string temp = heading + "...";
+
+            return temp;
+        }
     }
 }

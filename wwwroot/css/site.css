@@ -20,3 +20,16 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.dropdown-content {
+    display: none;
+}
+
+.dropdown-content.show {
+   display: table-row;
+}
+
+.bordered-div {
+    border: 1px solid #ddd;
+    padding: 10px;
+}

@@ -24,13 +24,20 @@ namespace Classwork_12._01._24_cookies_sessions_.Helpers
 
         private string BuildUserListHtml()
         {
+            if(Articles is null)
+            {
+                return new String("There are no available data!");
+            }
+            
+            
             StringBuilder str = new StringBuilder();
 
             str.AppendLine("""
                     <thead>
                         <tr>
                             <th scope="col">Title</th>
-                            <th scope="col">Content</th>
+                            <th scope="col">Heading</th>
+                            <th scope="col">Name</th>
                         </tr>
                     </thead>
                 """);
@@ -39,18 +46,25 @@ namespace Classwork_12._01._24_cookies_sessions_.Helpers
             foreach (var article in Articles)
             {
                 str.AppendLine($"""
-                            <tr onclick="window.location.href= "#">
+                            <tr onclick="toggleDropdown(this)">
                                 <td>
                                     {article.Title}
                                 </td>
                                 <td>
-                                    {article.Content}
+                                    {article.GetHeading()}
                                 </td>
                                 <td>
-                                    {userRepository.GetUserById(article.UserId).Email}
+                                    {userRepository.GetUserById(article.UserId).Name}
+                                </td>
+                            </tr>
+                            <tr class="dropdown-content">
+                                <td colspan="3" class="bordered-div">
+                                    Content:<br>
+                                    {article.Content}
                                 </td>
                             </tr>
                     """);
+
             }
 
             str.AppendLine("</tbody>");

@@ -6,7 +6,9 @@
     <title>@ViewData["Title"] - Classwork_16._02._24_auth_authorization__2</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/loginform.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Classwork_16._02._24_auth_authorization__2.styles.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
     <div class="container">
@@ -18,5 +20,13 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        function toggleDropdown(row) {
+            var nextRow = row.nextElementSibling;
+            if (nextRow.classList.contains('dropdown-content')) {
+                nextRow.classList.toggle('show');
+            }
+        }
+    </script>
 </body>
 </html>
